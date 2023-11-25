@@ -28,6 +28,4 @@ interface IUser {
   orders: IOrder[];
 }
 
-interface IUserMethod
-
-export { IFullName, IAddress, IOrder, IUser, IUserMethod };
+export { IFullName, IAddress, IOrder, IUser };

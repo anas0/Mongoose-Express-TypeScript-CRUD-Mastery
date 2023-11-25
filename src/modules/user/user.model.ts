@@ -88,6 +88,12 @@ const userSchema = new Schema<IUser>({
   },
 });
 
+// post save middleware
+userSchema.post('save', async function (doc, next) {
+  doc.password = '';
+  next();
+});
+
 const User = model<IUser>('User', userSchema);
 
 export default User;
