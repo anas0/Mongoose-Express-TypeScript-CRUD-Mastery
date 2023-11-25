@@ -22,10 +22,10 @@ interface IUser {
   fullName: IFullName;
   age: number;
   email: string;
-  isActive: boolean;
+  isActive: 'active' | 'inActive';
   hobbies: string[];
   address: IAddress;
-  orders: [IOrder];
+  orders: IOrder[];
 }
 
 export { IFullName, IAddress, IOrder, IUser };
