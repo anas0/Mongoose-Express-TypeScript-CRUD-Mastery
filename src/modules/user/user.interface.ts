@@ -22,7 +22,7 @@ interface IUser {
   fullName: IFullName;
   age: number;
   email: string;
-  isActive: 'active' | 'inActive';
+  isActive: boolean;
   hobbies: string[];
   address: IAddress;
   orders: IOrder[];

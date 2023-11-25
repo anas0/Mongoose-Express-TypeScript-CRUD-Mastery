@@ -20,19 +20,15 @@ const orderSchema = new Schema<IOrder>({
 
 const userSchema = new Schema<IUser>({
   userId: Number,
-  username: String,
+  username: {
+    type: String,
+    unique: true,
+  },
   password: String,
   fullName: fullNameSchema,
   age: Number,
   email: String,
-  isActive: {
-    type: String,
-    enum: {
-      values: ['active', 'inActive'],
-      message: '{VALUE} is not a valid status',
-    },
-    default: 'active',
-  },
+  isActive: Boolean,
   hobbies: [String],
   address: addressSchema,
   orders: [orderSchema],
