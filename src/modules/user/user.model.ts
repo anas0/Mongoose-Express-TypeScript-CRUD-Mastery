@@ -89,10 +89,16 @@ const userSchema = new Schema<IUser>({
 });
 
 // post save middleware
-userSchema.post('save', async function (doc, next) {
+userSchema.post('save', function (doc, next) {
   doc.password = '';
   next();
 });
+
+//  Query middleware
+// userSchema.pre('find', function (next) {
+//   this.find({ userSchema: { $in: ['username', 'age', 'email', 'address'] } });
+//   next();
+// });
 
 const User = model<IUser>('User', userSchema);
 
