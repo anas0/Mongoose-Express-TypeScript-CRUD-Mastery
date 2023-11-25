@@ -2,36 +2,90 @@ import { Schema, model } from 'mongoose';
 import { IAddress, IFullName, IOrder, IUser } from './user.interface';
 
 const fullNameSchema = new Schema<IFullName>({
-  firstName: String,
-  lastName: String,
+  firstName: {
+    type: String,
+    required: [true, 'Please tell us your firstName'],
+  },
+  lastName: {
+    type: String,
+    required: [true, 'Please tell us your lastName'],
+  },
 });
 
 const addressSchema = new Schema<IAddress>({
-  street: String,
-  city: String,
-  country: String,
+  street: {
+    type: String,
+    required: [true, 'Please tell us your street'],
+  },
+  city: {
+    type: String,
+    required: [true, 'Please tell us your city'],
+  },
+  country: {
+    type: String,
+    required: [true, 'Please tell us your country'],
+  },
 });
 
 const orderSchema = new Schema<IOrder>({
-  productName: String,
-  price: Number,
-  quantity: Number,
+  productName: {
+    type: String,
+    required: [true, 'Please tell us your productName'],
+  },
+  price: {
+    type: Number,
+    required: [true, 'Please tell us your price'],
+  },
+  quantity: {
+    type: Number,
+    required: [true, 'Please tell us your quantity'],
+  },
 });
 
 const userSchema = new Schema<IUser>({
-  userId: Number,
-  username: {
-    type: String,
+  userId: {
+    type: Number,
+    required: [true, 'Please tell us your userId'],
     unique: true,
   },
-  password: String,
-  fullName: fullNameSchema,
-  age: Number,
-  email: String,
-  isActive: Boolean,
-  hobbies: [String],
-  address: addressSchema,
-  orders: [orderSchema],
+  username: {
+    type: String,
+    required: [true, 'Please tell us your username'],
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: [true, 'Please tell us your password'],
+    select: false,
+  },
+  fullName: {
+    type: fullNameSchema,
+    required: [true, 'fullName is required'],
+  },
+  age: {
+    type: Number,
+    required: [true, 'Please tell us your age'],
+  },
+  email: {
+    type: String,
+    required: [true, 'Please tell us your email'],
+  },
+  isActive: {
+    type: Boolean,
+    required: [true, 'Please tell us your isActive status'],
+  },
+  hobbies: {
+    type: [String],
+    required: [true, 'Please tell us your hobbies'],
+  },
+  address: {
+    type: addressSchema,
+    required: [true, 'address is required'],
+  },
+  orders: {
+    type: [orderSchema],
+    required: [true, 'orders is required'],
+  },
 });
 
 const User = model<IUser>('User', userSchema);
